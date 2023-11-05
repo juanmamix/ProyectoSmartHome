@@ -237,9 +237,10 @@ void callback(char* topic, byte* payload, unsigned int length)
         Cycle_G = g;
         Cycle_B = b;
       }
-      else
-      {
-        //messageTemp = '#' + messageTemp;
+    }
+    if(Topic=="ArduinoEthernet/LED/RGB/COLOR")
+    {
+      //messageTemp = '#' + messageTemp;
         Serial.println("Changing color to "); 
         long number = (long) strtol( &messageTemp[0], NULL, 16);
         //Split them up into r, g, b values
@@ -265,8 +266,6 @@ void callback(char* topic, byte* payload, unsigned int length)
           Cycle_G = g;
           Cycle_B = b;
         }
-        
-      }
     }
     else
     if(Topic=="ArduinoEthernet/Pir")
@@ -461,6 +460,7 @@ void reconnect()
       // Once connected, publish an announcement...
       client.publish("ArduinoEthernet","Connected");
       client.subscribe("ArduinoEthernet/LED/RGB");
+      client.subscribe("ArduinoEthernet/LED/RGB/COLOR");
       client.subscribe("ArduinoEthernet/LED/RGB/VOLUME");
       client.subscribe("ArduinoEthernet/LED/RGB/DELAY");
       client.subscribe("ArduinoEthernet/LED/RGB/DELAYCYCLE");
