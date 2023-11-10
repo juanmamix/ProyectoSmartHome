@@ -51,9 +51,9 @@ PubSubClient client(ethClient);
     bool RGB         = true;
     int motion = 0;
     int mr, mb, mg;
-    int r = 100;
-    int g = 0;
-    int b = 180;
+    int r = 70;
+    int g = 30;
+    int b = 196;
     int ar = 0;
     int ag = 0;
     int ab = 0;
@@ -684,15 +684,16 @@ void setup() {
     delay(1000);
     analogWrite(BlueLED,0);
     delay(100);
-    analogWrite(RedLED,128);
-    analogWrite(GreenLED,0);
+    analogWrite(RedLED,70);
+    analogWrite(GreenLED,30);
     analogWrite(BlueLED,196);
-    Actual_R = 128;
-    Actual_G = 0;
+    Actual_R = 70;
+    Actual_G = 30;
     Actual_B = 196;    
     lcd.print("Started");
     delay(1000);
     lcd.clear();
+    lcd.noBacklight();
 }
 
 
