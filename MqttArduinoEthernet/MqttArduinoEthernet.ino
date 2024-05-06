@@ -36,7 +36,7 @@ PubSubClient client(ethClient);
     const int GreenLED = 45;
     const int BlueLED  = 46;
     const int Relay_1  = 40; 
-    const int Relay_2  = 41; 
+    const int Relay_2  = 39; 
     const int Relay_3  = 42; 
     const int Relay_4  = 43; 
     const int Pir      = 48;
@@ -244,7 +244,7 @@ void callback(char* topic, byte* payload, unsigned int length)
         Serial.println("Changing color to "); 
         long number = (long) strtol( &messageTemp[0], NULL, 16);
         //Split them up into r, g, b values
-        r = number >> 16;
+        r = number >> 16 ;
         g = (number >> 8) & 0xFF;
         b = number & 0xFF;
         Serial.println("R = ");
@@ -254,6 +254,10 @@ void callback(char* topic, byte* payload, unsigned int length)
         Serial.print("B = ");
         Serial.println(b);
         Serial.println("");
+        if (g == b && r == g)
+        {
+          r = r - 64;
+        }
         if(rythm)
         {
           Actual_R = r;
