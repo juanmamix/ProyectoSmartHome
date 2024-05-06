@@ -21,8 +21,8 @@ long lastMeasure = 0;
 
 
 // Pines
-const byte Relay1 = 16;
-const byte Relay2 = 0;
+const byte Relay1 = 12;
+const byte Relay2 = 13;
 
 void setup_wifi() {
   delay(1000);
@@ -107,12 +107,12 @@ void reconnect() {
 
 void setup() {
 
+  pinMode(Relay1, OUTPUT);
+  pinMode(Relay2, OUTPUT);
   Serial.begin(115200);
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
-  pinMode(Relay1, OUTPUT);
-  pinMode(Relay2, OUTPUT);
 }
 
 void loop() {
